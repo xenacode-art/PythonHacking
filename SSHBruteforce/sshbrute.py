@@ -27,7 +27,7 @@ if os.path.exists(input_file) == False:
   sys.exit(1)
   
 with open(input_file, 'r') as file:
-  for line in file.readlines()
+  for line in file.readlines():
      password = line.strip()
      try:
        response = ssh_connect(password)
