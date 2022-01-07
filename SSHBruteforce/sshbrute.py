@@ -21,6 +21,7 @@ def ssh_connect(password,code= 0 ):
 host = input('[+] Target Address: ')
 username = input('[+] SSH Username: ')
 input_file = input('[+] Password File: ')
+print('\n')
 
 if os.path.exists(input_file) == False:
   print("[!!] File/Path Doesn't Exist")
