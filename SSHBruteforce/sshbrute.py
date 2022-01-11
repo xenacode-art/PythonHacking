@@ -4,7 +4,7 @@ import paramiko , sys , os , socket , termcolor
 def ssh_connect(password,code= 0 ):
 
   ssh = paramiko.SSHClient()
-  ssh.set missing_host_key_policy(paramiko.AutoAddPolicy())
+  ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
   try:
     ssh.connect(host, port = 22, username = username, password = password)
      
@@ -42,7 +42,7 @@ with open(input_file, 'r') as file:
        elif response == 2: 
          print('[!!] Cant Connect') 
          sys.exit(1)
-     except Eception as e:
-     pritn(e)    
+     except Exception as e:
+       pritn(e)
      pass
          
