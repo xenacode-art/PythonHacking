@@ -7,7 +7,6 @@ def ssh_connect(password, code=0):
     try:
         ssh.connect(host, port=22, username=username, password=password)
 
-
     except paramiko.AuthenticationException:
         code = 1
 

