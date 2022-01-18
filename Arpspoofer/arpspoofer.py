@@ -18,7 +18,7 @@ def spoof(router_ip, router_mac, target_ip, target_mac):
     scapy.send(packet2)
 
 
-target_ip = str(sys.argv[])
+target_ip = str(sys.argv[0])
 router_ip = str(sys.argv[0])
 target_mac = str(get_mac_address(target_ip))
 router_mac = str(get_mac_address(router_ip))
